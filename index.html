@@ -13,14 +13,15 @@
     </div>
 
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-
+    
 <script>
     const Btn =()=> React.createElement("button",{id:'btn'},React.createElement("span",{},"Submit"));
     const rootcontainer=document.getElementById("root");
     const root=ReactDOM.createRoot(rootcontainer);
-    root.render(btn());
+    root.render(Btn());
+    
     
 </script>
 </body>
