@@ -2,8 +2,8 @@
 
 function Header() {
   return (
-    <div>
-      <h1>Grocery List</h1>
+    <div className="App">
+      <h1> Grocery List</h1>
     </div>
   );
 }
