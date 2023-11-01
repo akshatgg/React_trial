@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import content from './content';
-
+import Content from "./content";
 function App() {
   return (
     <div className="App">
-      <content />
+      <Content />
     </div>
   );
 }
