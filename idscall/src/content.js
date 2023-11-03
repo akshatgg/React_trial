@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaShieldAlt, FaTrashAlt } from 'react-icons/fa';
 
 function Content() {
   const [items, setItems] = useState([]);
@@ -10,7 +10,10 @@ function Content() {
   useEffect(() => {
     const storedBasket = JSON.parse(localStorage.getItem("data")) || [];
     setBasket(storedBasket);
-  }, []);
+  }, [], );
+
+  
+
 
   const pushToBasket = (id, checked, item, price) => {
     const newBasket = [...basket, { id, checked, item, price }];
@@ -26,8 +29,9 @@ function Content() {
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
+    
     setItems(updatedItems);
-
+    
     if (updatedItems.find((item) => item.id === id).checked) {
       pushToBasket(id, true, items.item, items.price);
     } else {
@@ -65,7 +69,8 @@ function Content() {
   }, []);
 
   return (
-    <div className="text-2xl flex items-center my-4 justify-center">
+    <div className="flex items-center my-4 justify-center">
+    <div className="text-2xl flex items-center  justify-center h-44 border w-4/12  ">
       <ul>
         {items.map((item) => (
           <li className="item" key={item.id}>
@@ -85,6 +90,7 @@ function Content() {
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }
