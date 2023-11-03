@@ -1,24 +1,20 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
 import { FaShieldAlt, FaTrashAlt } from 'react-icons/fa';
 
-function Content() {
+function Content({ updateBasketLength }) {
   const [items, setItems] = useState([]);
   const [basket, setBasket] = useState([]);
 
-  // Load basket data from localStorage when the component mounts
   useEffect(() => {
     const storedBasket = JSON.parse(localStorage.getItem("data")) || [];
     setBasket(storedBasket);
-  }, [], );
-
-  
-
+  }, []);
 
   const pushToBasket = (id, checked, item, price) => {
     const newBasket = [...basket, { id, checked, item, price }];
     setBasket(newBasket);
-    storeBasket(newBasket); // Update local storage after pushing an item
+    storeBasket(newBasket);
+    updateBasketLength(newBasket.length); // Notify App component
   };
 
   const storeBasket = (basketToStore) => {
@@ -29,11 +25,12 @@ function Content() {
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
-    
+
     setItems(updatedItems);
-    
+
     if (updatedItems.find((item) => item.id === id).checked) {
-      pushToBasket(id, true, items.item, items.price);
+      const selectedItem = updatedItems.find((item) => item.id === id);
+      pushToBasket(id, true, selectedItem.item, selectedItem.price);
     } else {
       removeFromBasket(id);
     }
@@ -42,7 +39,8 @@ function Content() {
   const removeFromBasket = (id) => {
     const newBasket = basket.filter((item) => item.id !== id);
     setBasket(newBasket);
-    storeBasket(newBasket); // Update local storage after removing an item
+    storeBasket(newBasket);
+    updateBasketLength(newBasket.length); // Notify App component
   };
 
   useEffect(() => {
@@ -67,6 +65,9 @@ function Content() {
       },
     ]);
   }, []);
+
+
+
 
   return (
     <div className="flex items-center my-4 justify-center">

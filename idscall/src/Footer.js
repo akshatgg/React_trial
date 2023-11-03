@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function Footer({footer}) {
+function Footer({ length }) {
   return (
     <div className='bg-slate-500 h-8 text-center text-xl'>
-{footer}
+      {length} List items
     </div>
-  )
+  );
 }
 
 export default Footer;

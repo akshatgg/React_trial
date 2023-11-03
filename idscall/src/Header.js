@@ -7,5 +7,8 @@ function Header({title}) {
     </div>
   )
 }
+Header.defaultProps={
+  title:"Default list"
+}
 
 export default Header
