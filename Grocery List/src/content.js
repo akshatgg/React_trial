@@ -82,12 +82,12 @@ function Content({ updateBasketLength }) {
 
   return (
     <div className="flex items-center my-4 justify-center">
-      <div className="text-2xl flex items-center justify-center h-44 border w-4/12">
+      <div className="text-2xl flex items-center justify-center h-44 w-4/12">
         <ul>
           {items
             .filter((item) => !item.hidden)
             .map((item) => (
-              <li key={`item-${item.id}`} className="item bg-gray-100 pl-9 pr-8 px-2 py-2 my-1 border border-gray-500">
+              <li key={`item-${item.id}`} className="item bg-gray-100 pl-9 pr-8 px-2 py-2 my-1  border-gray-500">
                 <div className="flex space-x-1.5">
                   <input
                     type="checkbox"

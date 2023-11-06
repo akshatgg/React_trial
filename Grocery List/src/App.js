@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import Content from "./content";
+import AddItem from "./AddItem";
 
 function App() {
   // Initialize basket length state
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header title="Grocery List" />
+      <AddItem />
       <Content updateBasketLength={updateBasketLength} />
       <Footer length={basketLength} />
     </div>
