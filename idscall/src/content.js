@@ -50,6 +50,10 @@ function Content({ updateBasketLength }) {
     updateBasketLength(newBasket.length);
   };
 
+  const HideandRemove=(id)=>{
+    hideItem(id);
+    removeFromBasket(id)
+  }
   useEffect(() => {
     setItems([
       {
@@ -94,7 +98,9 @@ function Content({ updateBasketLength }) {
                   <FaTrashAlt
                     role="button"
                     tabIndex="0"
-                    onClick={() => hideItem(item.id)}
+                    onClick={
+                      ()=>HideandRemove(item.id)
+                    }
                   />
                 </div>
               </li>
