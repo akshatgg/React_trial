@@ -1,7 +1,11 @@
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
 
-function AddItem() {
+function AddItem({newitem,setnewitem}) {
+
+
+
+
   return (
     <form className='grid grid-row-1 grid-cols-12 gap-2 mt-3'>
       <label htmlFor='additems'></label>
@@ -12,6 +16,8 @@ function AddItem() {
         placeholder='Add Items'
         required
         autoFocus
+        value={newitem}
+        onChange={(e)=>{  setnewitem(e.target.value)}}
       />
       <button
         className='border border-gray-900  w-5 rounded-md h-8 hover:bg-gray-200' // Added border classes

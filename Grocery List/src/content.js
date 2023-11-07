@@ -2,7 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
 function Content({ updateBasketLength }) {
-  const [items, setItems] = useState([]);
+  
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      checked: false,
+      hidden: false,
+      item: "Old Mong",
+      price: 1200,
+    },
+    {
+      id: 2,
+      checked: false,
+      hidden: false,
+      item: "Blue Lagoon",
+      price: 450,
+    },
+    {
+      id: 3,
+      checked: false,
+      hidden: false,
+      item: "Buttvizer",
+      price: 200,
+    },
+  ]);
   const [basket, setBasket] = useState([]);
 
   useEffect(() => {
@@ -54,31 +77,7 @@ function Content({ updateBasketLength }) {
     hideItem(id);
     removeFromBasket(id)
   }
-  useEffect(() => {
-    setItems([
-      {
-        id: 1,
-        checked: false,
-        hidden: false,
-        item: "Old Mong",
-        price: 1200,
-      },
-      {
-        id: 2,
-        checked: false,
-        hidden: false,
-        item: "Blue Lagoon",
-        price: 450,
-      },
-      {
-        id: 3,
-        checked: false,
-        hidden: false,
-        item: "Buttvizer",
-        price: 200,
-      },
-    ]);
-  }, []);
+
 
   return (
     <div className="flex items-center my-4 justify-center">
