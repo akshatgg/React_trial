@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
-function Content({ updateBasketLength,handleSubmit,items,setItems}) {
+function Content({ updateBasketLength,items,setItems,basket,setBasket}) {
   
    [items, setItems] = useState([
     {
@@ -26,7 +26,7 @@ function Content({ updateBasketLength,handleSubmit,items,setItems}) {
       price: 200,
     },
   ]);
-  const [basket, setBasket] = useState([]);
+   [basket, setBasket] = useState([]);
 
   useEffect(() => {
     const storedBasket = JSON.parse(localStorage.getItem("data")) || [];
@@ -68,6 +68,7 @@ function Content({ updateBasketLength,handleSubmit,items,setItems}) {
 
   const removeFromBasket = (id) => {
     const newBasket = basket.filter((item) => item.id !== id);
+    
     setBasket(newBasket);
     storeBasket(newBasket);
     updateBasketLength(newBasket.length);
@@ -77,6 +78,7 @@ function Content({ updateBasketLength,handleSubmit,items,setItems}) {
     hideItem(id);
     removeFromBasket(id)
   }
+  
 
 
  

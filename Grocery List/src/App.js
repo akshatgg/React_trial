@@ -1,51 +1,56 @@
+// App.js
 import React, { useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import Content from "./content";
+import Content from "./Content";
 import AddItem from "./AddItem";
 
 function App() {
-  // Initialize basket length state
   const [basketLength, setBasketLength] = useState(0);
-  const [items,setItems]=useState([])
-  // Define state for the new item and its setter
-  const [newitem, setNewitem] = useState([]); // Define newitem and setNewitem
+  const [items, setItems] = useState([]);
+  const [basket,setBasket]= useState([]);
+  const [newitem, setnewitem] = useState(''); 
 
-
-  // Function to update basket length
   const updateBasketLength = (length) => {
     setBasketLength(length);
   };
 
-
-  const handleSubmit=(e)=>{
+  const additem = (item) => {
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    const mynewitem = { id, checked: false, hidden: false, item };
+    const mylistitem = [...items, mynewitem];
+    console.log('Adding item:', mynewitem);
+    setItems(mylistitem);
+  localStorage.setItem('items',JSON.stringify(mylistitem))
+  
+  };
+  
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!newitem) {
-      return
+      return;
     }
-    setNewitem('')
+    additem(newitem);
+    console.log('Submitted:', newitem);
+    setnewitem(''); // Clear the input field
+  };
+  
 
-  }
-
-
-  const additem = (item)=>{
-    const id=item.length ? items[items.length-1].id+1:1;
-  }
   return (
     <div className="App">
       <Header title="Grocery List" />
       <AddItem
         newitem={newitem}
-        setnewitem={setNewitem}
-        handleSubmit={handleSubmit} // Pass the handleSubmit function and its properties
+        setnewitem={setnewitem}
+        handleSubmit={handleSubmit}
       />
       <Content
         updateBasketLength={updateBasketLength}
         items={items}
         setItems={setItems}
+        basket={basket}
+        setBasket={setBasket}
       />
-
-
       <Footer length={basketLength} />
     </div>
   );
