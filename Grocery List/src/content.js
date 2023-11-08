@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
-function Content({ updateBasketLength }) {
+function Content({ updateBasketLength,handleSubmit,items,setItems}) {
   
-  const [items, setItems] = useState([
+   [items, setItems] = useState([
     {
       id: 1,
       checked: false,
@@ -78,6 +78,8 @@ function Content({ updateBasketLength }) {
     removeFromBasket(id)
   }
 
+
+ 
 
   return (
     <div className="flex items-center my-4 justify-center">
