@@ -12,7 +12,7 @@ function App() {
   const [newitem, setnewitem] = useState(''); 
 
   const updateBasketLength = (length) => {
-    setBasketLength(length);
+    setBasketLength(length);  
   };
 
   const additem = (item) => {
