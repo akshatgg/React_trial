@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import ItemList from './ItemList';
 
-function Content({ updateBasketLength,items,setItems,basket,setBasket}) {
-  
-   [items, setItems] = useState([
+function Content({ updateBasketLength }) {
+  const [items, setItems] = useState([
     {
       id: 1,
       checked: false,
@@ -26,7 +25,8 @@ function Content({ updateBasketLength,items,setItems,basket,setBasket}) {
       price: 200,
     },
   ]);
-   [basket, setBasket] = useState([]);
+
+  const [basket, setBasket] = useState([]);
 
   useEffect(() => {
     const storedBasket = JSON.parse(localStorage.getItem("data")) || [];
@@ -74,44 +74,12 @@ function Content({ updateBasketLength,items,setItems,basket,setBasket}) {
     updateBasketLength(newBasket.length);
   };
 
-  const HideandRemove=(id)=>{
+  const HideandRemove = (id) => {
     hideItem(id);
-    removeFromBasket(id)
-  }
-  
+    removeFromBasket(id);
+  };
 
-
- 
-
-  return (
-    <div className="flex items-center my-4 justify-center">
-      <div className="text-2xl flex items-center justify-center h-44 w-4/12">
-        <ul>
-          {items
-            .filter((item) => !item.hidden)
-            .map((item) => (
-              <li key={`item-${item.id}`} className="item bg-gray-100 pl-9 pr-8 px-2 py-2 my-1  border-gray-500">
-                <div className="flex space-x-1.5">
-                  <input
-                    type="checkbox"
-                    onClick={() => toggleItem(item.id)}
-                    checked={item.checked}
-                  />
-                  <label onClick={() => toggleItem(item.id)}>{item.item}</label>
-                  <FaTrashAlt
-                    role="button"
-                    tabIndex="0"
-                    onClick={
-                      ()=>HideandRemove(item.id)
-                    }
-                  />
-                </div>
-              </li>
-            ))}
-        </ul>
-      </div>
-    </div>
-  );
+  return <ItemList items={items} toggleItem={toggleItem} HideandRemove={HideandRemove} />;
 }
 
 export default Content;
