@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -11,7 +10,7 @@ function App() {
 
   const [items, setItems] = useState(() => {
     // Check if items are stored in localStorage
-    const storedItems = JSON.parse(localStorage.getItem("data")) || [];
+    const storedItems = JSON.parse(localStorage.getItem("items")) || [];
 
     // If not, use the default items
     if (storedItems.length === 0) {
@@ -21,7 +20,7 @@ function App() {
           checked: false,
           hidden: false,
           item: "Old Mong",
-          price: 1200,
+          price: 200,
         },
         {
           id: 2,
@@ -45,7 +44,7 @@ function App() {
 
   const [basket, setBasket] = useState(() => {
     // Retrieve basket from localStorage or initialize it as an empty array
-    const storedBasket = JSON.parse(localStorage.getItem("data")) || [];
+    const storedBasket = JSON.parse(localStorage.getItem("basket")) || [];
     return storedBasket;
   });
 
@@ -62,7 +61,7 @@ function App() {
   };
 
   const storeBasket = (basketToStore) => {
-    localStorage.setItem("data", JSON.stringify(basketToStore));
+    localStorage.setItem("basket", JSON.stringify(basketToStore));
   };
 
   
@@ -94,11 +93,27 @@ function App() {
     setBasket(newBasket);
     storeBasket(newBasket);
     updateBasketLength(newBasket.length);
+    
+  };
+
+
+
+  const updatedItemlists=(id)=>{
+    const newBaske = items.filter((item) => item.id !== id);
+    setItems(newBaske);
+    storeItems(newBaske)
+ 
+  }
+
+  const storeItems = (itemsToStore) => {
+    localStorage.setItem("items", JSON.stringify(itemsToStore));
   };
 
   const HideandRemove = (id) => {
     hideItem(id);
+    updatedItemlists(id);
     removeFromBasket(id);
+  
   };
 
   const updateBasketLength = (length) => {
@@ -118,6 +133,7 @@ function App() {
     if (!newitem.trim()) {
       return;
     }
+
     additem(newitem.trim());
     setNewitem(''); // Clear the input field
   };
