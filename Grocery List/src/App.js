@@ -11,7 +11,7 @@ function App() {
 
   const [items, setItems] = useState(() => {
     // Check if items are stored in localStorage
-    const storedItems = JSON.parse(localStorage.getItem("items")) || [];
+    const storedItems = JSON.parse(localStorage.getItem("data")) || [];
 
     // If not, use the default items
     if (storedItems.length === 0) {
@@ -65,6 +65,7 @@ function App() {
     localStorage.setItem("data", JSON.stringify(basketToStore));
   };
 
+  
   const toggleItem = (id) => {
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
