@@ -1,10 +1,12 @@
+// ItemList.js
+
 import React from 'react';
 import LineItem from './LineItem';
 
 function ItemList({ items, toggleItem, HideandRemove }) {
   return (
-    <div className="flex items-center my-4 justify-center">
-      <div className="text-2xl flex items-center justify-center h-44 w-4/12">
+    <div className="flex flex-col items-center my-4 justify-center">
+      <div className="text-2xl flex flex-col items-center justify-center w-full sm:w-3/4 md:w-1/2 lg:w-1/3">
         <ul>
           {items
             .filter((item) => !item.hidden)
