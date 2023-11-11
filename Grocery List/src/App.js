@@ -153,10 +153,10 @@ function App() {
       />
 
       <Content
-        updateBasketLength={updateBasketLength}
-        items={items}
-        HideandRemove={HideandRemove}
-        toggleItem={toggleItem}
+     items={items.filter(item => ((item.item).toLowerCase()).includes(search.toLowerCase()))}
+     updateBasketLength={updateBasketLength}
+     HideandRemove={HideandRemove}
+     toggleItem={toggleItem}
       />
       <Footer length={basketLength} />
     </div>
