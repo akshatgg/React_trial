@@ -3,11 +3,11 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Content from "./Content";
 import AddItem from "./AddItem";
-
+import SearchItem from "./SearchItem";
 function App() {
   const [basketLength, setBasketLength] = useState(0);
   const [newitem, setNewitem] = useState('');
-
+  const [search,setsearch]=useState(' ')
   const [items, setItems] = useState(() => {
     // Check if items are stored in localStorage
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
@@ -146,6 +146,12 @@ function App() {
         setnewitem={setNewitem}
         handleSubmit={handleSubmit}
       />
+
+      <SearchItem
+      search={search}
+      setsearch={setsearch}
+      />
+
       <Content
         updateBasketLength={updateBasketLength}
         items={items}
