@@ -132,7 +132,7 @@ function App() {
     setItems(mylistitem);
     localStorage.setItem('items', JSON.stringify(mylistitem));
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!newitem.trim()) {
