@@ -7,7 +7,7 @@ import SearchItem from "./SearchItem";
 function App() {
   const [basketLength, setBasketLength] = useState(0);
   const [newitem, setNewitem] = useState('');
-  const [search,setsearch]=useState(' ')
+  const [search,setsearch]=useState('')
   const [items, setItems] = useState(() => {
     // Check if items are stored in localStorage
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
@@ -32,7 +32,7 @@ function App() {
         {
           id: 3,
           checked: false,
-          hidden: false,
+          hidden: false, // Ensure this is set to false
           item: "Buttvizer",
           price: 200,
         },
@@ -116,6 +116,11 @@ function App() {
   
   };
 
+  const filteredItems = items.filter(item => 
+    (item.item.toLowerCase()).includes(search.toLowerCase()) && !item.hidden
+  );
+
+  
   const updateBasketLength = (length) => {
     setBasketLength(length);
   };
@@ -152,12 +157,16 @@ function App() {
       setsearch={setsearch}
       />
 
-      <Content
-     items={items.filter(item => ((item.item).toLowerCase()).includes(search.toLowerCase()))}
-     updateBasketLength={updateBasketLength}
-     HideandRemove={HideandRemove}
-     toggleItem={toggleItem}
-      />
+<Content
+  items={items.filter(item => 
+    (item.item.toLowerCase()).includes(search.toLowerCase()) && !item.hidden
+  )}
+  updateBasketLength={updateBasketLength}
+  HideandRemove={HideandRemove}
+  toggleItem={toggleItem}
+  filteredItems={filteredItems}
+/>
+
       <Footer length={basketLength} />
     </div>
   );
